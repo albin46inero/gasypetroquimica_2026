@@ -118,9 +118,6 @@ function App() {
             {institucion?.institucion_nombre || 'INGENIERÍA DE GAS Y PETROQUÍMICA'}
           </h1>
 
-          <p style={{ fontSize: '1.3rem', color: '#fff', margin: '0 0 2rem', fontWeight: 400, textShadow: '2px 2px 4px rgba(0,0,0,0.6)', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
-            {institucion?.institucion_objetivos ? institucion.institucion_objetivos.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 'Formación integral en el sector energético con tecnología de vanguardia y metodología innovadora'}
-          </p>
 
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
             <a href="#conocer" style={{ padding: '1rem 2.5rem', background: primary, color: '#fff', textDecoration: 'none', borderRadius: '50px', fontWeight: 700, fontSize: '1.1rem', boxShadow: '0 4px 15px rgba(0,0,0,0.3)', transition: 'all 0.3s ease', display: 'inline-block' }}
