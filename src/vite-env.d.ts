@@ -10,3 +10,30 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    headers: {
+      // ✅ Protección contra Clickjacking
+      'X-Frame-Options': 'SAMEORIGIN',
+      'Content-Security-Policy': "frame-ancestors 'self'",
+      
+      // ✅ Prevenir MIME sniffing
+      'X-Content-Type-Options': 'nosniff',
+      
+      // ✅ Protección XSS
+      'X-XSS-Protection': '1; mode=block',
+    }
+  },
+  preview: {
+    headers: {
+      'X-Frame-Options': 'SAMEORIGIN',
+      'Content-Security-Policy': "frame-ancestors 'self'",
+      'X-Content-Type-Options': 'nosniff',
+      'X-XSS-Protection': '1; mode=block',
+    }
+  }
+})

@@ -119,18 +119,71 @@ function App() {
           </h1>
 
 
-          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <a href="#conocer" style={{ padding: '1rem 2.5rem', background: primary, color: '#fff', textDecoration: 'none', borderRadius: '50px', fontWeight: 700, fontSize: '1.1rem', boxShadow: '0 4px 15px rgba(0,0,0,0.3)', transition: 'all 0.3s ease', display: 'inline-block' }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.4)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)'; }}>
-              Conocer Más
-            </a>
-            <a href="#contacto" style={{ padding: '1rem 2.5rem', background: 'transparent', color: '#fff', textDecoration: 'none', borderRadius: '50px', fontWeight: 700, fontSize: '1.1rem', border: `3px solid ${secondary}`, boxShadow: '0 4px 15px rgba(0,0,0,0.3)', transition: 'all 0.3s ease', display: 'inline-block' }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = secondary; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
-              Contactar
-            </a>
-          </div>
+         {/* Botones */}
+<div style={{
+  display: 'flex',
+  gap: '1.5rem',
+  justifyContent: 'center',
+  flexWrap: 'wrap',
+  marginTop: '2rem'
+}}>
+  {/* ✅ Botón "Conocer Más" → Redirige a #sobre-nosotros */}
+  <a 
+    href="#sobre-nosotros" 
+    style={{
+      padding: '1rem 2.5rem',
+      background: primary,
+      color: '#fff',
+      textDecoration: 'none',
+      borderRadius: '50px',
+      fontWeight: 700,
+      fontSize: '1.1rem',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+      transition: 'all 0.3s ease',
+      display: 'inline-block',
+      scrollBehavior: 'smooth'  // ✅ Scroll suave
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'translateY(-3px)';
+      e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.4)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)';
+    }}
+  >
+    Conocer Más
+  </a>
+
+  {/* ✅ Botón "Contactar" → Redirige a #contacto */}
+  <a 
+    href="#contacto" 
+    style={{
+      padding: '1rem 2.5rem',
+      background: 'transparent',
+      color: '#fff',
+      textDecoration: 'none',
+      borderRadius: '50px',
+      fontWeight: 700,
+      fontSize: '1.1rem',
+      border: `3px solid ${secondary}`,
+      boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+      transition: 'all 0.3s ease',
+      display: 'inline-block',
+      scrollBehavior: 'smooth'  // ✅ Scroll suave
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.background = secondary;
+      e.currentTarget.style.transform = 'translateY(-3px)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.background = 'transparent';
+      e.currentTarget.style.transform = 'translateY(0)';
+    }}
+  >
+    Contactar
+  </a>
+</div>
 
           {contenido?.portada && contenido.portada.length > 1 && (
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '3rem' }}>
@@ -193,7 +246,7 @@ function App() {
       </section>
 
       {/* ==================== EXPLORA NUESTRA INSTITUCIÓN (CON DEGRADADOS) ==================== */}
-     <section id="avisos-content" style={{
+     <section id="explora-nuestra-institucion" style={{
           padding: '6rem 0',
           background: `linear-gradient(180deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)`,
           position: 'relative',
@@ -317,7 +370,7 @@ function App() {
       </section>
 
       {/* ==================== SOBRE NOSOTROS (CON DEGRADADOS) ==================== */}
-     <section id="avisos-content" style={{
+     <section id="sobre-nosotros" style={{
           padding: '6rem 0',
           background: `linear-gradient(180deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)`,
           position: 'relative',
@@ -559,7 +612,7 @@ function App() {
       </section>
 
       {/* ==================== CONTACTO (CON DEGRADADOS) ==================== */}
- <section id="avisos-content" style={{
+ <section id="contacto" style={{
           padding: '6rem 0',
           background: `linear-gradient(180deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)`,
           position: 'relative',
@@ -658,6 +711,7 @@ function App() {
                     {institucion?.institucion_facebook && (
                       <a href={institucion.institucion_facebook} target="_blank" rel="noopener noreferrer" className="social-icon" style={{
                         width: '45px', height: '45px', borderRadius: '12px', background: '#1877F2', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        
                         color: '#fff', textDecoration: 'none', fontSize: '1.3rem', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(24,119,242,0.3)'
                       }} title="Facebook">f</a>
                     )}

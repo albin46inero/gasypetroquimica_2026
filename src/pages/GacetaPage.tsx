@@ -362,95 +362,159 @@ export default function GacetaPage() {
               </div>
             )}
           </div>
+{/* ==================== MODAL PDF - SOLUCIÓN SIMPLE ==================== */}
+{selectedPdf && (
+  <div 
+    style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.9)',
+      zIndex: 9999,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      animation: 'fadeInUp 0.3s ease',
+      padding: '2rem'
+    }}
+    onClick={() => setSelectedPdf(null)}
+  >
+    <div 
+      style={{
+        background: '#fff',
+        borderRadius: '16px',
+        padding: '3rem',
+        maxWidth: '500px',
+        width: '100%',
+        textAlign: 'center',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+        animation: 'zoomIn 0.3s ease'
+      }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Icono */}
+      <div style={{
+        width: '80px',
+        height: '80px',
+        margin: '0 auto 1.5rem',
+        background: `linear-gradient(135deg, ${primary}, ${secondary})`,
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '2.5rem',
+        color: '#fff'
+      }}>
+        📄
+      </div>
 
-          {/* ==================== MODAL PDF ==================== */}
-          {selectedPdf && (
-            <div 
-              style={{
-                position: 'fixed',
-                inset: 0,
-                background: 'rgba(0,0,0,0.95)',
-                zIndex: 9999,
-                display: 'flex',
-                flexDirection: 'column',
-                animation: 'fadeInUp 0.3s ease'
-              }}
-            >
-              {/* Header del modal */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '1rem 2rem',
-                background: `linear-gradient(135deg, ${primary}, ${primary}dd)`,
-                color: '#fff'
-              }}>
-                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700 }}>
-                  Visualizador de PDF
-                </h3>
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  <a 
-                    href={selectedPdf}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      padding: '0.5rem 1.5rem',
-                      background: '#fff',
-                      color: primary,
-                      textDecoration: 'none',
-                      borderRadius: '50px',
-                      fontWeight: 600,
-                      fontSize: '0.9rem',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    ⬇️ Descargar
-                  </a>
-                  <button 
-                    onClick={() => setSelectedPdf(null)}
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      background: 'rgba(255,255,255,0.2)',
-                      border: 'none',
-                      color: '#fff',
-                      fontSize: '1.5rem',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.3)';
-                      e.currentTarget.style.transform = 'rotate(90deg)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.2)';
-                      e.currentTarget.style.transform = 'rotate(0deg)';
-                    }}
-                  >
-                    ×
-                  </button>
-                </div>
-              </div>
+      {/* Título */}
+      <h3 style={{
+        fontSize: '1.5rem',
+        color: '#1e293b',
+        marginBottom: '1rem',
+        fontWeight: 700
+      }}>
+        Abrir Documento
+      </h3>
 
-              {/* PDF Viewer */}
-              <iframe
-                src={selectedPdf}
-                title="Visualizador de PDF"
-                style={{
-                  flex: 1,
-                  width: '100%',
-                  border: 'none',
-                  background: '#fff'
-                }}
-              />
-            </div>
-          )}
+      {/* Mensaje */}
+      <p style={{
+        color: '#64748b',
+        fontSize: '1rem',
+        marginBottom: '2rem',
+        lineHeight: 1.6
+      }}>
+        El documento se abrirá en una nueva pestaña de tu navegador.
+      </p>
+
+      {/* Botón principal */}
+      <a 
+        href={selectedPdf}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => {
+          // ✅ Forzar apertura en nueva pestaña
+          window.open(selectedPdf, '_blank', 'noopener,noreferrer');
+        }}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          padding: '1rem 2.5rem',
+          background: `linear-gradient(135deg, ${primary}, ${primary}cc)`,
+          color: '#fff',
+          textDecoration: 'none',
+          borderRadius: '50px',
+          fontWeight: 700,
+          fontSize: '1.1rem',
+          boxShadow: `0 4px 15px ${primary}40`,
+          transition: 'all 0.3s ease',
+          marginBottom: '1rem'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-3px)';
+          e.currentTarget.style.boxShadow = `0 6px 20px ${primary}60`;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.boxShadow = `0 4px 15px ${primary}40`;
+        }}
+      >
+        🔗 Abrir PDF ahora
+      </a>
+
+      {/* Botón secundario: Descargar */}
+      <br />
+      <a 
+        href={selectedPdf}
+        download
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          padding: '0.75rem 2rem',
+          background: 'transparent',
+          color: primary,
+          textDecoration: 'none',
+          borderRadius: '50px',
+          fontWeight: 600,
+          fontSize: '0.95rem',
+          border: `2px solid ${primary}`,
+          transition: 'all 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = `${primary}10`;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = 'transparent';
+        }}
+      >
+        ⬇️ Descargar PDF
+      </a>
+
+      {/* Botón cerrar */}
+      <button 
+        onClick={() => setSelectedPdf(null)}
+        style={{
+          display: 'block',
+          margin: '2rem auto 0',
+          padding: '0.5rem 1.5rem',
+          background: 'transparent',
+          color: '#64748b',
+          border: 'none',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          fontSize: '0.9rem',
+          transition: 'color 0.3s ease'
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.color = '#ef4444'}
+        onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
+      >
+        ✕ Cerrar
+      </button>
+    </div>
+  </div>
+)}
         </section>
       </main>
 
